@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+
+<head>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous">
+    </script>
+</head>
+
+<body>
+
+<div id="article">
+    <h2>Headlines - Dailymail</h2>
+    <button>Refresh</button>
+</div>
+
+<script>
+    $("#article button").click(function () {
+        $.ajax({
+            type: "GET",
+            url: " http://localhost:7000/Article",
+        }).done(function (data) {
+            var article = document.createElement("li");
+            $("ul").empty().remove()
+            $("#article").append($("<ul/>"));
+            var articles = JSON.parse(data);
+            articles.forEach(function (element) {
+                var element = element.title + " " + element.link;
+                $("#article ul").append($("<li/>").html(element));
+            });
+        });
+    });
+
+
+</script>
+</body>
+
+</html>
