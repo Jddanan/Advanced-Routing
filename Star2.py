@@ -14,7 +14,7 @@ def app():
 @route('/Article')
 def headline():
     headlines = []
-    r = randint(0, len(feed["entries"]))
+    r = randint(0, len(feed["entries"])-10)
     for i in range(r, r + 10):
         title = feed["entries"][i]["title"]
         link = "<a href=" + feed["entries"][i]["link"] + ">Go to the article</a>"
